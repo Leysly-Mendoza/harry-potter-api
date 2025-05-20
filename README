@@ -1,0 +1,19 @@
+# API de Personajes de Harry Potter
+
+Una API RESTful desarrollada con Node.js, Express y MySQL para gestionar personajes del universo de Harry Potter.
+
+## 🚀 Características
+
+- CRUD completo para personajes.
+- Validación con express-validator.
+- Documentación interactiva con Swagger.
+- Soporte para JSON y XML.
+- Middleware de errores personalizado.
+- Preparada para producción en Railway.
+
+## 📦 Instalación
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/harrypotter-api.git
+   cd harrypotter-api
