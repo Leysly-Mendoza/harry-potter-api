@@ -1,0 +1,197 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Personajes de Harry Potter",
+    "description": "Una API REST para gestionar personajes del universo de Harry Potter.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://tu-api-production-url.com",
+      "description": "Servidor en producción"
+    },
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor local de desarrollo"
+    }
+  ],
+  "paths": {
+    "/personajes": {
+      "get": {
+        "summary": "Obtener todos los personajes",
+        "responses": {
+          "200": {
+            "description": "Lista de personajes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Personaje"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Datos inválidos"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear un nuevo personaje",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonajeInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Personaje creado exitosamente"
+          },
+          "400": {
+            "description": "Datos inválidos"
+          }
+        }
+      }
+    },
+    "/personajes/{id}": {
+      "get": {
+        "summary": "Obtener un personaje por ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Personaje encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Personaje"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Personaje no encontrado"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Actualizar un personaje existente",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonajeInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Personaje actualizado"
+          },
+          "404": {
+            "description": "Personaje no encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un personaje por ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Eliminado exitosamente"
+          },
+          "404": {
+            "description": "Personaje no encontrado"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Personaje": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "nombre": {
+            "type": "string",
+            "example": "Harry Potter"
+          },
+          "casa": {
+            "type": "string",
+            "example": "Gryffindor"
+          },
+          "descripcion": {
+            "type": "string",
+            "example": "El niño que vivió, famoso por derrotar a Voldemort."
+          },
+          "rol": {
+            "type": "string",
+            "example": "Estudiante"
+          }
+        }
+      },
+      "PersonajeInput": {
+        "type": "object",
+        "required": ["nombre", "casa", "descripcion", "rol"],
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "example": "Hermione Granger"
+          },
+          "casa": {
+            "type": "string",
+            "example": "Gryffindor"
+          },
+          "descripcion": {
+            "type": "string",
+            "example": "Una de las brujas más brillantes de su generación."
+          },
+          "rol": {
+            "type": "string",
+            "example": "Estudiante"
+          }
+        }
+      }
+    }
+  }
+}
