@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://tu-api-production-url.com",
+      "url": "https://harry-potter-api-production-90a5.up.railway.app",
       "description": "Servidor en producción"
     },
     {
