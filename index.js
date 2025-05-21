@@ -23,7 +23,7 @@ app.use((req, res) => {
   res.status(404).json({ error: "Ruta no encontrada" });
 });
 
-const PORT = process.env.DB_PORT || 3000;
+const PORT = process.env.DB_PORT;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
