@@ -3,7 +3,7 @@ const { validationResult } = require("express-validator");
 
 const getPersonajes = (req, res, next) => {
   const { id } = req.params;
-  const query = id ? "SELECT * FROM personajes WHERE id = ?" : "SELECT * FROM personajes";
+  const query = id ? "SELECT * FROM personajes WHERE id = ?" : "SELECT * FROM Personajes";
   const params = id ? [id] : [];
 
   db.query(query, params, (err, results) => {
@@ -19,7 +19,7 @@ const insertPersonaje = (req, res, next) => {
 
   const { nombre, casa, descripcion, rol } = req.body;
   db.query(
-    "INSERT INTO personajes (nombre, casa, descripcion, rol) VALUES (?, ?, ?, ?)",
+    "INSERT INTO Personajes (nombre, casa, descripcion, rol) VALUES (?, ?, ?, ?)",
     [nombre, casa, descripcion, rol],
     (err) => {
       if (err) return next(err);
@@ -43,7 +43,7 @@ const updatePersonaje = (req, res, next) => {
   if (fields.length === 0) return res.status(400).json({ error: "No se proporcionaron datos para actualizar" });
 
   values.push(id);
-  db.query(`UPDATE personajes SET ${fields.join(", ")} WHERE id = ?`, values, (err, results) => {
+  db.query(`UPDATE Personajes SET ${fields.join(", ")} WHERE id = ?`, values, (err, results) => {
     if (err) return next(err);
     if (results.affectedRows === 0) return res.status(404).json({ error: "Personaje no encontrado" });
     res.json({ message: "Personaje actualizado correctamente" });
@@ -52,7 +52,7 @@ const updatePersonaje = (req, res, next) => {
 
 const deletePersonaje = (req, res, next) => {
   const { id } = req.params;
-  db.query("DELETE FROM personajes WHERE id = ?", [id], (err, results) => {
+  db.query("DELETE FROM Personajes WHERE id = ?", [id], (err, results) => {
     if (err) return next(err);
     if (results.affectedRows === 0) return res.status(404).json({ error: "Personaje no encontrado" });
     res.json({ message: "Personaje eliminado correctamente" });
