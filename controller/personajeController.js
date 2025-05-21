@@ -3,7 +3,7 @@ const { validationResult } = require("express-validator");
 
 const getPersonajes = (req, res, next) => {
   const { id } = req.params;
-  const query = id ? "SELECT * FROM personajes WHERE id = ?" : "SELECT * FROM Personajes";
+  const query = id ? "SELECT * FROM Personajes WHERE id = ?" : "SELECT * FROM Personajes";
   const params = id ? [id] : [];
 
   db.query(query, params, (err, results) => {
